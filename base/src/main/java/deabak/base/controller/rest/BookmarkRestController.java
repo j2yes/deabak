@@ -19,7 +19,7 @@ import deabak.base.service.BookmarkService;
 @RestController
 @RequestMapping(value="bookmarks")
 public class BookmarkRestController {
- 
+  
 	@Resource(name="bookmarkService")
 	BookmarkService bookmarkService;
 	
