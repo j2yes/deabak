@@ -1,0 +1,22 @@
+<button style="margin-right: 10px;" type="button" class="btn btn-default navbar-btn" ng-click="createMember()">
+	<span class="glyphicon glyphicon-plus"></span>신규가입
+</button>
+
+<div class="list-group" ng-if="true">
+	<ul>
+		<li ng-repeat="member in memberList">
+			<a ng-href="#/members/{{member.id}}" class="list-group-item">
+				<span>{{member.email}}</span>
+				<span class="badge">{{member.nickname}}</span> 
+			</a>
+		</li>
+	</ul>
+</div>
+
+<p>페이지 정보</p>
+email : <input type="text" ng-model='member.email'/>
+limit : <input type="text" ng-model='member.limit'/>
+page : {{member.page}}
+<p></p>
+<button style="margin-right: 10px;" type="button" class="btn btn-default navbar-btn" ng-click="search(member)">검색</button>
+<a href="" ng-click="member.page=1;moveMemberPage(member)">1</a><a href="" ng-click="member.page=2;moveMemberPage(member)">2</a><a href="" ng-click="member.page=3;moveMemberPage(member)">3</a>

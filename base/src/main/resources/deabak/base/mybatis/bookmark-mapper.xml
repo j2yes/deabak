@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="deabak.base.mapper.BookmarkMapper">
+	<resultMap id="bookmarks" type="deabak.base.domain.Bookmark">
+	  <result property="bookmarkId"     column="BOOKMARK_ID" />
+	  <result property="bookmarkName"   column="BOOKMARK_NAME"/>
+	  <result property="bookmarkUrl"    column="BOOKMARK_URL"/>
+	  <result property="bookmarkDesc"   column="BOOKMARK_DESC"/>
+	</resultMap>
+	
+	<select id="getBookmarks" parameterType="deabak.base.domain.Bookmark" resultMap="bookmarks">
+		<![CDATA[
+		   SELECT BOOKMARK_ID
+			    , BOOKMARK_NAME
+			    , BOOKMARK_URL
+			    , BOOKMARK_DESC 
+			 FROM BOOKMARK
+			WHERE 1=1
+		]]>
+		<if test="bookmarkName != '' and bookmarkName != null">
+   	      and BOOKMARK_NAME LIKE #{bookmarkName} || '%'
+  	    </if>
+	</select>
+	<select id="getBookmark" parameterType="java.lang.String" resultMap="bookmarks">
+		<![CDATA[
+		   SELECT BOOKMARK_ID
+			    , BOOKMARK_NAME
+			    , BOOKMARK_URL
+			    , BOOKMARK_DESC 
+			 FROM BOOKMARK
+			WHERE BOOKMARK_ID = #{bookmarkId}
+		]]>
+	</select>
+	
+	<update id="updateBookmark" parameterType="deabak.base.domain.Bookmark">
+		<![CDATA[
+			UPDATE BOOKMARK
+			   SET BOOKMARK_NAME = #{bookmarkName}
+			     , BOOKMARK_URL  = #{bookmarkUrl}
+			     , BOOKMARK_DESC = #{bookmarkDesc}
+			 WHERE BOOKMARK_ID   = #{bookmarkId}			      
+		]]>
+	</update>
+	
+	<insert id="createBookmark" parameterType="deabak.base.domain.Bookmark">
+		<![CDATA[
+			INSERT INTO BOOKMARK
+				( 
+				  BOOKMARK_NAME
+				, BOOKMARK_URL
+				, BOOKMARK_DESC
+				)
+				VALUES
+				(
+				  #{bookmarkName}
+				, #{bookmarkUrl}
+				, #{bookmarkDesc}
+				)
+		]]>
+	</insert>
+	
+	<delete id="deleteBookmark" parameterType="java.lang.String">
+		<![CDATA[
+			DELETE 
+			  FROM BOOKMARK
+			 WHERE BOOKMARK_ID = #{bookmarkId}
+		]]>
+	</delete>
+</mapper>

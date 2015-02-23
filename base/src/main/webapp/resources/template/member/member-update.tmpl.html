@@ -1,0 +1,20 @@
+<form name="updateMemberForm">
+	<div class="form-group">
+		<label for="email">e-mail</label>
+		<input type="email" name="email" class="form-control" placeholder="your e-mail address for joinning this web-site." ng-model="member.email" ng-required="true" />
+		<span class="error" ng-show="updateMemberForm.email.$error.required">필수</span>
+		<span class="error" ng-show="updateMemberForm.email.$error.email">유효하지않은 이메일주소</span>
+		<br/>
+		<label for="nickname">nickname</label>
+		<input type="text" name="nickname" class="form-control" placeholder="your nickname to show in this web-site." ng-model="member.nickname" ng-required="true" ng-minlength="4" ng-maxlength="10" />
+		
+		<label for="password">password</label>
+		<input type="password" name="password" class="form-control" ng-model="member.password" ng-required="true" ng-minlength="4" ng-maxlength="10" />
+	 
+		<p>{{member.email}}</p>
+		<p>{{member.nickname}}</p>
+		<p>{{member.password}}</p>
+		<p>{{updateMemberForm.$valid}}</p>
+		<button type="button" class="btn btn-default" ng-click="updateMember(member)" ng-show="updateMemberForm.$valid">수정</button>
+	</div>
+ </form>

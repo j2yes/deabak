@@ -1,0 +1,21 @@
+<form name="insertMemberForm">
+	<div class="form-group">
+		<label for="email">e-mail</label>
+		<input type="email" name="email" class="form-control" placeholder="your e-mail address for joinning this web-site." ng-model="member.email" ng-required="true" />
+		<span class="error" ng-show="insertMemberForm.email.$error.required">필수입력</span>
+		<span class="error" ng-show="insertMemberForm.email.$error.email">유효하지않은 이메일 주소</span>
+		<br/>
+		<label for="nickname">nickname</label>
+		<input type="text" name="nickname" class="form-control" placeholder="your nickname to show in this web-site." ng-model="member.nickname" ng-required="true" ng-minlength="4" ng-maxlength="10" />
+		
+		<label for="password">password</label>
+		<input type="password" name="password" class="form-control" ng-model="member.password" ng-required="true" ng-minlength="4" ng-maxlength="10" />
+	 
+	 	<p>아이디 : {{member.id}}</p>
+		<p>이메일 : {{member.email}}</p>
+		<p>닉네임 : {{member.nickname}}</p>
+		<p>패스워드 : {{member.password}}</p>
+		<p>{{insertMemberForm.$valid}}</p>
+		<button type="submit" class="btn btn-default" ng-click="insertMember(member)" ng-show="insertMemberForm.$valid">가입</button>
+	</div>
+ </form>
